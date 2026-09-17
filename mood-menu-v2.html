@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>MOOD — منيو</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root{
+  --black:#0e0d0c;
+  --panel:#161310;
+  --cream:#efe4cd;
+  --gold:#c99a4a;
+  --brown:#4a2c1d;
+  --green:#5b7a4a;
+  --line: rgba(201,154,74,0.35);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html,body{
+  background:#050505;
+  font-family:'Amiri', 'Traditional Arabic', serif;
+}
+
+body{
+  padding: 28px 14px;
+  display:flex;
+  justify-content:center;
+}
+
+.spread{
+  display:flex;
+  gap: 18px;
+  max-width: 1500px;
+  width:100%;
+  flex-wrap:wrap;
+  align-items:flex-start;
+}
+
+.page{
+  flex:1 1 400px;
+  max-width: 480px;
+  background: radial-gradient(120% 100% at 50% 0%, var(--panel) 0%, var(--black) 65%);
+  border:1px solid var(--line);
+  position:relative;
+  padding: 30px 24px;
+}
+
+.page::before{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border:1px solid rgba(201,154,74,0.22);
+  pointer-events:none;
+}
+
+.section-tag{
+  text-align:center;
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+
+/* ---------- brand ---------- */
+.brand{ text-align:center; margin-bottom: 26px; }
+.brand-cafe{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-size: 19px;
+  color: var(--gold);
+}
+.brand-mood{
+  font-family:'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight:600;
+  color: var(--cream);
+  letter-spacing: 8px;
+  line-height:1;
+  margin: 5px 0 8px;
+}
+.brand-sub{
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 4px;
+}
+.brand .divider{
+  width:70px; height:1px; background:var(--gold);
+  margin:16px auto 0; opacity:.55;
+}
+
+/* ---------- category card ---------- */
+.category{
+  border:1px solid var(--line);
+  margin-bottom: 20px;
+  background: rgba(239,228,205,0.02);
+  break-inside: avoid;
+}
+
+.cat-photo-wrap{
+  position:relative;
+  height: 150px;
+  overflow:hidden;
+  border-bottom: 1px solid var(--line);
+}
+.cat-photo-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter: saturate(1.05) contrast(1.03);
+}
+.cat-photo-wrap::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(14,13,12,0) 40%, rgba(14,13,12,0.92) 100%);
+}
+.cat-photo-wrap .ph-label{
+  position:absolute;
+  bottom:10px; right:16px;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.cat-photo-wrap .ph-label .cat-icon{
+  width:38px; height:38px;
+}
+.cat-photo-wrap .ph-label .cat-icon svg{ width:20px; height:20px; }
+.cat-photo-wrap .ph-label h3{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:600;
+  font-size: 22px;
+  color: var(--cream);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
+
+.cat-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(201,154,74,0.10), rgba(201,154,74,0) 70%);
+}
+
+.cat-icon{
+  width:46px; height:46px;
+  flex-shrink:0;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: radial-gradient(circle at 35% 30%, rgba(201,154,74,0.25), rgba(0,0,0,0) 70%);
+}
+.cat-icon svg{
+  width:24px; height:24px;
+  stroke: var(--gold);
+  fill:none;
+  stroke-width:1.4;
+}
+
+.cat-head h3{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:600;
+  font-size: 23px;
+  color: var(--gold);
+  letter-spacing: .5px;
+}
+
+.cat-body{ padding: 14px 18px 18px; }
+
+.item{
+  display:flex;
+  align-items:baseline;
+  gap: 8px;
+  margin-bottom: 9px;
+  font-size:14.5px;
+}
+.item:last-child{ margin-bottom:0; }
+.item .name{ color: var(--cream); }
+.item .dots{ flex:1; border-bottom:1px dotted rgba(239,228,205,0.28); transform: translateY(-3px); min-width:12px; }
+.item .price{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:15.5px; color: var(--gold); white-space:nowrap; }
+
+/* ---------- desserts ---------- */
+.dessert-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.dessert-item{
+  border:1px solid var(--line);
+  padding: 14px 10px;
+  text-align:center;
+  background: rgba(239,228,205,0.02);
+}
+.dessert-item .d-icon{
+  width:34px; height:34px;
+  margin: 0 auto 8px;
+  stroke: var(--gold);
+  fill:none;
+  stroke-width:1.3;
+}
+.dessert-item .name{ font-size:14px; color: var(--cream); display:block; margin-bottom:4px; }
+.dessert-item .price{ font-family:'Cormorant Garamond', serif; font-size:15px; color: var(--gold); }
+
+footer{
+  text-align:center;
+  margin-top: 6px;
+  font-size:11.5px;
+  color: var(--green);
+  letter-spacing:2px;
+}
+
+/* ================= PRINT ================= */
+@media print{
+  @page{ size:A4; margin:10mm; }
+  html,body{ background:#050505 !important; }
+  body{ padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .spread{ gap:8mm; }
+  .page{
+    max-width:none;
+    width: 46%;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    break-inside: avoid;
+  }
+  .category{ break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ================= PAGE 1 — هوت ================= -->
+  <div class="page">
+
+    <div class="brand">
+      <div class="brand-cafe">cafe</div>
+      <div class="brand-mood">MOOD</div>
+      <div class="brand-sub">M E N U</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="section-tag">— مشروبات ساخنة —</div>
+
+    <!-- هوت كوفي -->
+    <div class="category">
+      <div class="cat-photo-wrap">
+        <img src="hot_coffee.jpg" alt="هوت كوفي">
+        <div class="ph-label">
+          <h3>هوت كوفي</h3>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">إسبريسو سينجل</span><span class="dots"></span><span class="price">30</span></div>
+        <div class="item"><span class="name">فرنش كوفي سينجل</span><span class="dots"></span><span class="price">30</span></div>
+        <div class="item"><span class="name">قهوة تركي محوجة</span><span class="dots"></span><span class="price">30</span></div>
+        <div class="item"><span class="name">قهوة تركي سادة</span><span class="dots"></span><span class="price">25</span></div>
+        <div class="item"><span class="name">قهوة بندق</span><span class="dots"></span><span class="price">30</span></div>
+        <div class="item"><span class="name">سبانيش لاتيه</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">قهوة لوتس</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">قهوة بيستاشيو</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">كابتشينو</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">لاتيه</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">فلات وايت</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">أمريكان كوفي</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">نسكافيه</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">كاراميل ميكاتو</span><span class="dots"></span><span class="price">45</span></div>
+      </div>
+    </div>
+
+    <!-- هوت درينك -->
+    <div class="category">
+      <div class="cat-photo-wrap">
+        <img src="hot_drink.jpg" alt="هوت درينك">
+        <div class="ph-label">
+          <h3>هوت درينك</h3>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">شاي</span><span class="dots"></span><span class="price">15</span></div>
+        <div class="item"><span class="name">إنجلش تي</span><span class="dots"></span><span class="price">20</span></div>
+        <div class="item"><span class="name">شاي بلبن</span><span class="dots"></span><span class="price">25</span></div>
+        <div class="item"><span class="name">سحلب</span><span class="dots"></span><span class="price">25</span></div>
+        <div class="item"><span class="name">سحلب مكسرات</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">قرفة بلبن</span><span class="dots"></span><span class="price">25</span></div>
+        <div class="item"><span class="name">نعناع / قرفة / ينسون / شاي أخضر / كركديه / لمون سخن</span><span class="dots"></span><span class="price">15</span></div>
+        <div class="item"><span class="name">هوت سيدر</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">هوت شوكليت</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">هوت شوكليت وايت</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">هوت شوكليت مكس</span><span class="dots"></span><span class="price">45</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= PAGE 2 — ساقع 1 ================= -->
+  <div class="page">
+
+    <div class="section-tag">— مشروبات ساقعة —</div>
+
+    <!-- ايس كوفي -->
+    <div class="category">
+      <div class="cat-photo-wrap">
+        <img src="ice_coffee.jpg" alt="آيس كوفي">
+        <div class="ph-label">
+          <h3>آيس كوفي</h3>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">آيس كوفي لاتيه</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">موكا</span><span class="dots"></span><span class="price">55</span></div>
+        <div class="item"><span class="name">كاراميل ميكاتو</span><span class="dots"></span><span class="price">55</span></div>
+        <div class="item"><span class="name">أمريكان كوفي</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">سبانيش لاتيه</span><span class="dots"></span><span class="price">55</span></div>
+        <div class="item"><span class="name">ريدبول</span><span class="dots"></span><span class="price">85</span></div>
+      </div>
+    </div>
+
+    <!-- فرابيه -->
+    <div class="category">
+      <div class="cat-photo-wrap">
+        <img src="frappee.jpg" alt="فرابيه">
+        <div class="ph-label">
+          <h3>فرابيه</h3>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">فرابيه كلاسيك</span><span class="dots"></span><span class="price">55</span></div>
+        <div class="item"><span class="name">فرابيه شوكولاتة</span><span class="dots"></span><span class="price">55</span></div>
+        <div class="item"><span class="name">فرابيه كراميل</span><span class="dots"></span><span class="price">55</span></div>
+        <div class="item"><span class="name">فرابيه لوتس</span><span class="dots"></span><span class="price">55</span></div>
+        <div class="item"><span class="name">فرابيه بيستاشيو</span><span class="dots"></span><span class="price">60</span></div>
+      </div>
+    </div>
+
+    <!-- سموزي -->
+    <div class="category">
+      <div class="cat-photo-wrap">
+        <img src="smothiee.jpg" alt="سموزي">
+        <div class="ph-label">
+          <h3>سموزي</h3>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">مانجا</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">فراولة</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">كيوي</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">خوخ</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">ليمون بالنعناع</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">أناناس</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">بطيخ</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">بلوبيري</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">ميكس بيري</span><span class="dots"></span><span class="price">40</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= PAGE 3 — ساقع 2 ================= -->
+  <div class="page">
+
+    <div class="section-tag">— مشروبات ساقعة —</div>
+
+    <!-- عصائر فريش -->
+    <div class="category">
+      <div class="cat-photo-wrap">
+        <img src="freshh_juice.jpg" alt="عصائر فريش">
+        <div class="ph-label">
+          <h3>عصائر فريش</h3>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">مانجا</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">فراولة</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">ليمون</span><span class="dots"></span><span class="price">30</span></div>
+        <div class="item"><span class="name">ليمون بالنعناع</span><span class="dots"></span><span class="price">35</span></div>
+        <div class="item"><span class="name">كيوي</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">فراولة بلبن</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">جوافة بلبن</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">موز بلبن</span><span class="dots"></span><span class="price">35</span></div>
+        <div class="item"><span class="name">بلح بلبن</span><span class="dots"></span><span class="price">50</span></div>
+        <div class="item"><span class="name">زبادي بالعسل</span><span class="dots"></span><span class="price">40</span></div>
+        <div class="item"><span class="name">زبادي بالفواكه</span><span class="dots"></span><span class="price">45</span></div>
+      </div>
+    </div>
+
+    <!-- سوفت درينك -->
+    <div class="category">
+      <div class="cat-photo-wrap">
+        <img src="soft_drink.jpg" alt="سوفت درينك">
+        <div class="ph-label">
+          <h3>سوفت درينك</h3>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">بيبسي</span><span class="dots"></span><span class="price">25</span></div>
+        <div class="item"><span class="name">بريل</span><span class="dots"></span><span class="price">35</span></div>
+        <div class="item"><span class="name">ريدبول</span><span class="dots"></span><span class="price">65</span></div>
+        <div class="item"><span class="name">موخيتو</span><span class="dots"></span><span class="price">45</span></div>
+        <div class="item"><span class="name">موخيتو ريدبول</span><span class="dots"></span><span class="price">80</span></div>
+        <div class="item"><span class="name">مياه صغيرة</span><span class="dots"></span><span class="price">10</span></div>
+        <div class="item"><span class="name">مياه كبيرة</span><span class="dots"></span><span class="price">15</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= PAGE 4 — الإضافات و Desserts ================= -->
+  <div class="page">
+    
+
+    <!-- Desserts -->
+    <div class="category">
+      <div class="cat-head">
+        <h3>Desserts</h3>
+      </div>
+      <div class="cat-body">
+        <div class="dessert-grid">
+          <div class="dessert-item">
+            <span class="name">تشيز كيك</span>
+            <span class="price">—</span>
+          </div>
+          <div class="dessert-item">
+            <span class="name">براوني</span>
+            <span class="price">—</span>
+          </div>
+          <div class="dessert-item">
+            <span class="name">تيراميسو</span>
+            <span class="price">—</span>
+          </div>
+          <div class="dessert-item">
+            <span class="name">كوكيز</span>
+            <span class="price">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الإضافات -->
+    <div class="category">
+      <div class="cat-head">
+        <h3>الإضافات</h3>
+      </div>
+      <div class="cat-body">
+        <div class="item"><span class="name">شوت إسبريسو</span><span class="dots"></span><span class="price">35</span></div>
+        <div class="item"><span class="name">صوص</span><span class="dots"></span><span class="price">15</span></div>
+        <div class="item"><span class="name">عسل</span><span class="dots"></span><span class="price">15</span></div>
+        <div class="item"><span class="name">لبن</span><span class="dots"></span><span class="price">15</span></div>
+        <div class="item"><span class="name">توبينج</span><span class="dots"></span><span class="price">15</span></div>
+      </div>
+    </div>
+
+    <footer>good coffee, good mood</footer>
+  </div>
+
+</div>
+
+</body>
+</html>
